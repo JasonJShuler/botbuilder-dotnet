@@ -10,5 +10,6 @@ msbuild /property:Configuration=release Microsoft.Bot.Builder.Classic.csproj
 msbuild /property:Configuration=release ..\Microsoft.Bot.Builder.Classic.Autofac\Microsoft.Bot.Builder.Classic.Autofac.csproj 
 msbuild /property:Configuration=release ..\rview\rview.csproj
 for /f %%v in ('powershell -noprofile "(Get-Command .\bin\release\Microsoft.Bot.Builder.Classic.dll).FileVersionInfo.FileVersion"') do set version=%%v
+IF NOT "%PackageVersion%"=="" SET version=%PackageVersion%
 ..\..\..\packages\NuGet.CommandLine.4.5.1\tools\NuGet.exe pack Microsoft.Bot.Builder.Classic.nuspec -symbols -properties version=%version% -OutputDirectory ..\nuget
 echo *** Finished building Microsoft.Bot.Builder.Classic 
