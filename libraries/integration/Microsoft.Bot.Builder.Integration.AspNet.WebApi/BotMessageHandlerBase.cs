@@ -28,7 +28,12 @@ namespace Microsoft.Bot.Builder.Integration.AspNet.WebApi.Handlers
                     ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
                     ContractResolver = new ReadOnlyJsonContractResolver(),
                     Converters = new List<JsonConverter> { new Iso8601TimeSpanConverter() }
-                }
+                },
+                SupportedMediaTypes =
+                {
+                    new System.Net.Http.Headers.MediaTypeHeaderValue("application/json") { CharSet = "utf-8" },
+                    new System.Net.Http.Headers.MediaTypeHeaderValue("text/json") { CharSet = "utf-8" },
+                },
             }
         };
 
